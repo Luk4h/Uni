@@ -38,6 +38,7 @@ int main(){
 
     */
 
+   /*
 
     int a = 10;
     std::cout<<"Size of a: "<< a <<" - Size of a&: "<< &a << std::endl;
@@ -49,6 +50,7 @@ int main(){
     int* p_new_a = new int[5];
     std::cout<<"Size of p_new_a: "<< p_new_a <<" - Size of p_new_a&: "<< &p_new_a << std::endl;
    
+   */
 
    /*
 
@@ -60,6 +62,13 @@ int main(){
     std::cout<<"Size of a: "<< a) << std::endl;
 
     */
-    
+
+   int a = 10;
+   int* p_a = &a;
+
+   std::cout<<"Valor: "<< p_a << std::endl;
+   std::cout<<"Endereço: "<< &p_a << std::endl;
+   std::cout<<"Conteudo do endereço: "<< *p_a << std::endl;
+
    return 0;
 }
