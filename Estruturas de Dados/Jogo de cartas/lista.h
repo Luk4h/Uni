@@ -2,6 +2,7 @@
 
 #ifndef LISTA_H
 #define LISTA_H
+using namespace std;
 
 template<typename T>
 struct TElemento {
@@ -63,13 +64,34 @@ void inserir_posicao_lista_estatica(TListaEstatica<T,MAX> &l, T c, int posicao) 
 }
 
 template<typename T, int MAX>
-void remover_fim_lista_estatica(TListaEstatica<T,MAX> &l) { }
+void remover_fim_lista_estatica(TListaEstatica<T,MAX> &l) {
+    if(l.quantidade <= 0)
+        cout << "A lista já está vazia!";
+    else 
+        l.quantidade--;    
+}
 
 template<typename T, int MAX>
-void remover_inicio_lista_estatica(TListaEstatica<T,MAX> &l) { }
+void remover_inicio_lista_estatica(TListaEstatica<T,MAX> &l) { 
+    if(l.quantidade <= 0)
+        cout << "A lista já está vazia!";
+    else {
+        for(int i = l.quantidade; i > 1; i--){
+            l.vetor[i - 1] = l.vetor[i];
+        }
+    }
+}
 
 template<typename T, int MAX>
-void remover_posicao_lista_estatica(TListaEstatica<T,MAX> &l) { }
+void remover_posicao_lista_estatica(TListaEstatica<T,MAX> &l, int posicao) { 
+    if(l.quantidade <= 0 || posicao >= l.quantidade)
+        cout << "Index out of range";
+
+    for(int i = l.quantidade; i > posicao; i--){
+        l.vetor[i - 1] = l.vetor[i];
+    }
+    l.quantidade--;
+}
 
 #include <iostream>
 
@@ -93,15 +115,27 @@ T obter_posicao_dado(TListaEstatica<T,MAX> l, int posicao) {
     return l.vetor[l.quantidade-1].dado;
 }
 
-#include <algorithm>
-#include <vector>
+//TODO: CONTÊM CARTA
 template<typename T, int MAX>
-void trocar_posicoes_lista_estatica(TListaEstatica<T,MAX> &l, int pos1, int pos2) {
-
-    TElemento<T> aux = l.vetor[pos1];
-    l.vetor[pos1] = l.vetor[pos2];
-    l.vetor[pos2] = aux;
-
+bool percente_a_lista( TListaEstatica<T, MAX> &l, T dado ){
+    for( int i = 0; i <l.quantidade; i++ ){
+        if( l.vetor[i].dado == dado ){
+            return true;
+        }
+    }
+    return false;
 }
 
+//TODO: DESCOBRIR INDICE
+template<typename T, int MAX>
+int obter_o_indice( TListaEstatica<T, MAX> &l, T dado ){
+    for( int i = 0; i <l.quantidade; i++ ){
+        if( l.vetor[i].dado == dado ){
+            return i;
+        }
+    }
+    return -1;
+}
+
+//TODO: 
 #endif // LISTA_H
